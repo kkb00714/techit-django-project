@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core.handlers.wsgi import WSGIRequest
 
 # Create your views here.
 
 def calculator(request): 
     # request는 요청이라는 의미로, 첫번째 인자로 무조건 들어와야 함(약속)
+    
+    print(f'request = {request}')
+    print(f'request type= {type(request)}')
+    print(f'request.__dict__ = {request.__dict__}')
     
     # 1. 데이터 확인
     num1 = request.GET.get('num1')

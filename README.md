@@ -41,7 +41,12 @@
 
 # HTTP의 기본   
     ※ HTTP는 HTML 문서와 같은 리소스들을 가져올 수 있도록 해주는 프로토콜
+
     ※ F12(개발자 도구)를 통해 각각의 요소들을 볼 줄 알아야 함
+
+    ※ 장고 공식 페이지(Request and Response) - https://docs.djangoproject.com/ko/4.0/ref/request-response/
+    
+    ※ 
 
 
 
