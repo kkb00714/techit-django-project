@@ -6,6 +6,7 @@
 
 ※ pip install django => 장고 설치
 
+※ pip list => 설치된 pip 목록 확인
 ------
 
 # 장고 프로젝트 생성하기
