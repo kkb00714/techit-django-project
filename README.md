@@ -116,7 +116,26 @@
         - 프로젝트가 복잡한 경우 난이도 상승
         - Raw Query 보다 성능이 낮음
     
-    ※ 
+    
+# MTV 디자인 패턴 - 1 (Models)
 
+    ※ View (컨트롤러 역할) - Template (데이터 출력 역할) - Model (데이터 관리)
+
+    ※ Model 의 역할
+        => 데이터를 관리하는 역할
+        => 데이터베이스에 저장할 테이블 정의
+        => 모델에 작성된 코드를 기준으로 데이터베이스 생성(ORM, Object Relational Mapping)
+
+    ※ 주요 모델 필드
+        => CharField : 작거나 큰 문자열을 위한 문자열 필드 (str())
+        => TextField : 긴 텍스트 필드 (str())
+        => BooleanField : 참/거짓 필드 (bool())
+        => DataTimeField : datatime.datetime 인스턴스로 표시되는 날짜 및 시간 필드 (datatime())
+        => IntegerField : 정수 필드 (int())
+        => FloatField : 부동 소수점 숫자 필드 (float())
+
+    ※ 필드 주요 속성 => 노션, PPT 참조
+
+    ※ 
 
 
