@@ -22,3 +22,4 @@ class Comment(models.Model):
 
 # python manage.py makemigrations => database 생성?
 # python manage.py migrate => 테이블 생성
+# admin 12
