@@ -213,11 +213,39 @@
         - 읽기 어려우며 복잡도가 높음
         - 데코레이터 사용 시 함수를 재정의 해야 함
 
-    ※ 
+-------------
 
-    ※ 
+# Django Template Engine
 
+    ※ Template은 서버에서 실행 ☆
 
+    ※ Template 태그
+        - block : 자식 템플릿으로 재정의할 수 있는 블록
+            ex) {% block name %} {% endblock %}
+        - extends : 부모 템플릿을 확장, 상속
+            ex) {% extends 'template_name' %}
+        - include : 템플릿을 로드하고 현재 Context로 렌더링, 템플릿 포함
+            ex) {% include template_name %}
+        - for : Context 변수의 배열의 항목을 반복 사용 (for, empty)
+            ex) {% for variable in variable_list %} ... {% endfor %}
+        - if : 조건이 true 이면 출력하고 false 인 경우 미출력 (if, else, elif)
+            ex) {% if bool %} {% endif %}
+        - url : 보기 및 선택적 매개 변수와 일치하는 절대 경로 참조 (도메인 이름이 없는 URL)를 반환
+            ex) {% url 'url_name' %}
 
+    ※ Template 상속
+        - 부모 HTML을 자식 HTML들이 가져다 쓰는 것. (자식에서 작성한 HTML들이 부모 HTML에 들어가는 형태 ??)
+        
+    ※ Template 필드
+        - date : 주어진 형식에 따라 날짜 형식을 지정 
+            ex) {{ value|date:"D d M Y" }}
+        - default : 값이 로 평가 False가 되면 지정된 기본값을 사용하고, 그렇지 않으면 값을 사용
+            ex) {{ value|default:"nothing" }}
+        - center : 주어진 너비의 필드에서 값을 가운데에 맞춤 
+            ex) {{ value|center:"15" }}
+        - truncatechars : 정된 문자 수보다 긴 경우 문자열을 자름. 잘린 문자열은 번역 가능한 줄임표 문자("...")로 끝남
+            ex) {{ value|truncatechars:7 }}
+        - intcomma : 정수 또는 부동 소수점(또는 둘 중 하나의 문자열 표현)을 세 자리마다 쉼표가 포함된 문자열로 변환
+            ex) {% load humanize %} {{ value|intcomma }}
 
 
