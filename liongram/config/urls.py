@@ -1,7 +1,7 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from posts.views import url_view, url_parameter_view, function_view, class_view, function_list_view 
+from posts.views import index, url_view, url_parameter_view, function_view, class_view, function_list_view 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,5 +13,9 @@ urlpatterns = [
     path('cbv/', class_view.as_view()),
     # class 이기 때문에, .as_view() 를 붙여줘야 함.
     # function 일 때는 그냥 사용해도 ok.
+    
+    # posts에 있는 url 을 가져옴
+    path('', index, name='index'),
+    path('posts/', include('posts.urls')),
     
 ]

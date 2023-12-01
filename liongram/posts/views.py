@@ -4,6 +4,28 @@ from django.views.generic.list import ListView
 
 from .models import Post
 
+def index(request):
+    return render(request, 'index.html')
+
+
+def post_list_view(request):
+    return render(request, 'posts/post_list.html')
+    # settings.py 의 TEMPLATES 란에 templates 라는 경로를 입력했기 때문에(?)
+    # posts(앱명) 을 써준 이후에 templates 다음의 경로들을 써주어야 함.
+
+def post_create_view(request):
+    return render(request, 'posts/post_form.html')
+
+def post_detail_view(request, id):
+    return render(request, 'posts/post_detail.html')
+
+def post_update_view(request, id):
+    return render(request, 'posts/post_form.html')
+
+def post_delete_view(request, id):
+    return render(request, 'posts/post_confirm_delete.html')
+
+
 def url_view(request): # request는 무조건 있어야 함
     data = {'code':'001', 'ln':'good'}
     return HttpResponse('<h1>url_view</h1>')

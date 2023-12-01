@@ -55,7 +55,12 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], 
+        # templates 폴더에 템플릿 엔진을 사용할 것이라고 지정해둔 것
+        
+        # Template 을 넣어줘야 하는데, 경로를 알려줘야 함.
+        # 여기서 BASE_DIR 은 이 liongram의 workspace를 가리킴 (posts의 templates가 아님)
+        # 한 마디로 여기에서 가리키는 templates는 liongram\templates 을 가리킴
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
