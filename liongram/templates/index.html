@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block title %}홈{% endblock %}
@@ -7,7 +6,7 @@
 {% block content %}
 <main>
     <div class="card-list">
-        <p>여기는 다음 영상에서☆</p>
+        {% include 'mixin/posts/post_card.html' %}
     </div>
 </main>
 {% endblock %}
