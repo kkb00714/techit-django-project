@@ -1,15 +1,49 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock %} | 라이언그램</title>
 </head>
-<body>
+<body class="container">
+
     <!-- 상속받는 자식 html에서는 부모 html의 block을 가져와서 사용 가능함 -->
     <div>
         {% block content %}
         {% endblock %}
+    </div>
+
+    <div>
+        <nav>
+            <ul class="buttom-menu-group">
+                <li>
+                    <img src="{% static 'icons/home_outlined_black_36dp.svg' %}" alt="홈">
+                    <!-- Base dir이 이미 static을 지정하고 있으므로 -->
+                    <!-- '' 부분에는 이미지 파일의 경로(icons/...) 를 넣으면 됨 -->
+                </li>
+
+                <li>
+                    <img src="{% static 'icons/search_outlined_black_36dp.svg' %}" alt="검색">
+                </li>
+
+                <li>
+                    <img src="{% static 'icons/add_box_outlined_black_36dp.svg' %}" alt="글쓰기">
+                </li>
+
+                <li>
+                    <img src="{% static 'icons/favorite_outlined_black_36dp.svg' %}" alt="좋아요">
+                </li>
+
+                <li>
+                    <img src="{% static 'icons/account_circle_outlined_black_36dp.svg' %}" alt="프로필">
+                </li>
+                
+            </ul>
+        </nav>
     </div>
 
 </body>

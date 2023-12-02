@@ -1,9 +1,13 @@
 {% extends "base.html" %}
-{% block title %}인덱스{% endblock %}
+
+{% load static %}
+
+{% block title %}홈{% endblock %}
 
 {% block content %}
-<h1>인덱스 화면</h1>
-<ul>
-    <li><a href="{% url 'posts:post-list' %}">게시글 목록</a></li>
-</ul>
+<main>
+    <div class="card-list">
+        <p>여기는 다음 영상에서☆</p>
+    </div>
+</main>
 {% endblock %}
