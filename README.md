@@ -249,3 +249,12 @@
             ex) {% load humanize %} {{ value|intcomma }}
 
 
+------------
+
+# CRUD 란?
+
+    ※ CRUD : 소프트웨어가 가지는 기본적인 데이터 처리 기능인 Create(생성), Read(읽기), Update(갱신), Delete(삭제)를 묶어서 일컫는 말
+
+    ※ 대부분의 웹 서비스의 기반이 되는 개념
+
+    ※ 
