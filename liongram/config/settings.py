@@ -121,6 +121,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+
+# 관리자들(서비스 제공자)이 업로드 하는 것
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
@@ -129,6 +131,12 @@ STATICFILES_DIRS = [
     # 현재 Base_dir (liongram) 이라는 폴더 안에 static 이라는 
     # 폴더가 있다는 것을 정의함
 ]
+
+# 사용자들이 업로드 하는 것
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+# media 파일이 존재할 경로를 지정해줌
+# 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic.list import ListView
+from django.contrib.auth.decorators import login_required
 
 from .models import Post
 
@@ -13,8 +14,24 @@ def post_list_view(request):
     # settings.py 의 TEMPLATES 란에 templates 라는 경로를 입력했기 때문에(?)
     # posts(앱명) 을 써준 이후에 templates 다음의 경로들을 써주어야 함.
 
+@login_required
 def post_create_view(request):
-    return render(request, 'posts/post_form.html')
+    if request.method == 'GET':
+        return render(request, 'posts/post_form.html')
+    else:
+        image = request.FILES.get('image')
+        # html에서 이미지 태그를 file로 지정했기 때문에 FILES 라고 지정
+        
+        content = request.POST.get('content')
+        # content는 POST 타입으로 지정했기 때문에
+        print(image)
+        print(content)
+        Post.objects.create(
+            image = image,
+            content = content,
+            writer = request.user
+        )
+        return redirect('index')
 
 def post_detail_view(request, id):
     return render(request, 'posts/post_detail.html')
