@@ -10,6 +10,11 @@ def index(request):
 
 
 def post_list_view(request):
+    
+    post_list = Post.objects.all()
+    context = {
+        'post_list' : post_list,
+    }
     return render(request, 'posts/post_list.html')
     # settings.py 의 TEMPLATES 란에 templates 라는 경로를 입력했기 때문에(?)
     # posts(앱명) 을 써준 이후에 templates 다음의 경로들을 써주어야 함.
