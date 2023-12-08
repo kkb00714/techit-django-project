@@ -16,7 +16,7 @@ def index(request):
 
 def post_list_view(request):
     
-    post_list = Post.objects.all() # Post 전체 데이터 조회
+    post_list = Post.objects.filter(writer=request.user) # Post 전체 데이터 조회
     # post_list = Post.objects.filter(writer = request.user)
     # Post.writer 가 현재 로그인 한 사용자의 글만 조회
     context = {
@@ -25,6 +25,18 @@ def post_list_view(request):
     return render(request, 'posts/post_list.html', context)
     # settings.py 의 TEMPLATES 란에 templates 라는 경로를 입력했기 때문에(?)
     # posts(앱명) 을 써준 이후에 templates 다음의 경로들을 써주어야 함.
+
+def post_detail_view(request, id):
+    try:
+        post = Post.objects.get(id = id)
+    except Post.DoesNotExist:
+        return redirect('index')
+    
+    context = {
+        'post' : post,
+    }
+    return render(request, 'posts/post_detail.html', context)
+
 
 @login_required
 def post_create_view(request):
@@ -44,9 +56,6 @@ def post_create_view(request):
             writer = request.user
         )
         return redirect('index')
-
-def post_detail_view(request, id):
-    return render(request, 'posts/post_detail.html')
 
 def post_update_view(request, id):
     return render(request, 'posts/post_form.html')
