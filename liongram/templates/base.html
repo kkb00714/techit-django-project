@@ -21,7 +21,9 @@
         <nav>
             <ul class="bottom-menu-group">
                 <li>
-                    <img src="{% static 'icons/home_outlined_black_36dp.svg' %}" alt="홈">
+                    <a href="{% url 'index' %}">
+                        <img src="{% static 'icons/home_outlined_black_36dp.svg' %}" alt="홈">
+                    </a>
                     <!-- Base dir이 이미 static을 지정하고 있으므로 -->
                     <!-- '' 부분에는 이미지 파일의 경로(icons/...) 를 넣으면 됨 -->
                 </li>

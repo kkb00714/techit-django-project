@@ -58,7 +58,14 @@ def post_create_view(request):
         return redirect('index')
 
 def post_update_view(request, id):
-    return render(request, 'posts/post_form.html')
+    post = Post.objects.get(id = id)
+    
+    if request.method == 'GET':
+        context = {'post' : post,}
+        return render(request, 'posts/post_form.html', context)
+    elif request.method =='POST':
+        pass
+
 
 def post_delete_view(request, id):
     return render(request, 'posts/post_confirm_delete.html')
