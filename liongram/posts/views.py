@@ -6,16 +6,23 @@ from django.contrib.auth.decorators import login_required
 from .models import Post
 
 def index(request):
-    return render(request, 'index.html')
+    post_list = Post.objects.all().order_by('-created_at') # Post 전체 데이터 조회
+    # order_by('-created_at') 로 하면 최신순으로 정렬 => Queryset Api 의 함수임
+    context = {
+        'post_list' : post_list,
+    }
+    return render(request, 'index.html', context)
 
 
 def post_list_view(request):
     
-    post_list = Post.objects.all()
+    post_list = Post.objects.all() # Post 전체 데이터 조회
+    # post_list = Post.objects.filter(writer = request.user)
+    # Post.writer 가 현재 로그인 한 사용자의 글만 조회
     context = {
         'post_list' : post_list,
     }
-    return render(request, 'posts/post_list.html')
+    return render(request, 'posts/post_list.html', context)
     # settings.py 의 TEMPLATES 란에 templates 라는 경로를 입력했기 때문에(?)
     # posts(앱명) 을 써준 이후에 templates 다음의 경로들을 써주어야 함.
 
