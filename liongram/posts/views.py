@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from django.http import HttpResponse, JsonResponse
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
-
 from .models import Post
 
 def index(request):
@@ -58,14 +57,28 @@ def post_create_view(request):
         return redirect('index')
 
 def post_update_view(request, id):
+    
     post = Post.objects.get(id = id)
+    # post = get_object_or_404(Post, id = id)
+    # => 수정할 때 해당 id의 값이 없을 경우 404 에러를 띄움
     
     if request.method == 'GET':
         context = {'post' : post,}
         return render(request, 'posts/post_form.html', context)
     elif request.method =='POST':
-        pass
-
+        new_image = request.FILES.get('image')
+        content = request.POST.get('content')
+        print(new_image)
+        print(content)
+        
+        if new_image:
+            post.image.delete()
+            post.image = new_image
+            
+        post.image = new_image
+        post.content = content
+        post.save()
+        return redirect('posts:post-detail', post.id)
 
 def post_delete_view(request, id):
     return render(request, 'posts/post_confirm_delete.html')
