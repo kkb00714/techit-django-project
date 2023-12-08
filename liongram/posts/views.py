@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
@@ -81,7 +81,12 @@ def post_update_view(request, id):
         return redirect('posts:post-detail', post.id)
 
 def post_delete_view(request, id):
-    return render(request, 'posts/post_confirm_delete.html')
+    post = get_object_or_404(Post, id = id)
+    if request.method == 'GET':
+        context = { 'post' : post }
+        return render(request, 'posts/post_confirm_delete.html', context)
+    else:
+        pass
 
 
 def url_view(request): # request는 무조건 있어야 함
@@ -106,6 +111,7 @@ def function_view(request):
     elif request.method == 'POST':
             print(f'request.POST: {request.POST}')
     return render(request, 'view.html')
+    
     
 # 클래스 기반 뷰 
 
