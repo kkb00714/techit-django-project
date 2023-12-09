@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, Http404
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
 from .models import Post
@@ -56,9 +56,10 @@ def post_create_view(request):
         )
         return redirect('index')
 
+@login_required
 def post_update_view(request, id):
     
-    post = Post.objects.get(id = id)
+    post = Post.objects.get(id = id, writer = request.user)
     # post = get_object_or_404(Post, id = id)
     # => 수정할 때 해당 id의 값이 없을 경우 404 에러를 띄움
     
@@ -80,13 +81,19 @@ def post_update_view(request, id):
         post.save()
         return redirect('posts:post-detail', post.id)
 
+@login_required
 def post_delete_view(request, id):
+    # post = get_object_or_404(Post, id = id, writer = request.user)
     post = get_object_or_404(Post, id = id)
+    if request.user != post.writer:
+        raise Http404('잘못된 접근됩니다.')
+        
     if request.method == 'GET':
         context = { 'post' : post }
         return render(request, 'posts/post_confirm_delete.html', context)
     else:
-        pass
+        post.delete()
+        return redirect('index')
 
 
 def url_view(request): # request는 무조건 있어야 함
