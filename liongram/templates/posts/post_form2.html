@@ -8,6 +8,10 @@
     <div>
         {{ form.as_p }}
         
+        <!-- : html 에서 주석처리를 한 것은 서버에서 그대로 실행하기 때문에 html에서만 출력이 안 되고 -->
+        <!-- {# {{ form.as_p }} #} : 이런식으로 양쪽에 {# #} 로 감싸면 -->
+        <!-- 코드 자체가 노출이 되지 않음. (로그성 코드를 숨기기 위해 사용할 수 있음)-->
+        
         <!--
         {% for field in form %}
             <label for="{{ field.id_for_label }}">{{ field.html_name }}</label>

@@ -4,7 +4,7 @@ from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
 
 from .models import Post
-from .forms import PostBaseForm
+from .forms import PostBaseForm, PostCreateForm, PostDetailForm
 
 def index(request):
     post_list = Post.objects.all().order_by('-created_at') # Post 전체 데이터 조회
@@ -35,6 +35,7 @@ def post_detail_view(request, id):
     
     context = {
         'post' : post,
+        'form' : PostDetailForm(),
     }
     return render(request, 'posts/post_detail.html', context)
 
@@ -62,11 +63,12 @@ def post_create_view(request):
 
 def post_create_form_view(request):
     if request.method == 'GET':
-        form = PostBaseForm()
+        # form = PostBaseForm()
+        form = PostCreateForm()
         context = { 'form' : form }
         return render(request, 'posts/post_form2.html', context)
     else:
-        form = PostBaseForm(request.POST, request.FILES)
+        form = PostCreateForm(request.POST, request.FILES)
         print(form)
 
         if form.is_valid():
