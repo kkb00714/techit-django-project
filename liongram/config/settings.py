@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'posts',
     # 'support',
     'users',
+    'accounts',
     'debug_toolbar',
 ]
 
