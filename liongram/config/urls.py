@@ -21,6 +21,7 @@ urlpatterns = [
     # posts에 있는 url 을 가져옴
     path('', index, name='index'),
     path('posts/', include('posts.urls', namespace='posts')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
     
     path("__debug__/", include("debug_toolbar.urls")),
     
