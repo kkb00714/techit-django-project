@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -17,7 +18,7 @@ def signup_view(request):
     else:
         form = SignUpForm(request.POST) # 데이터 유효성 검사
         
-        if SignUpForm.is_valid(): # 데이터 유효성 검사
+        if form.is_valid(): # 데이터 유효성 검사
             # 회원가입 처리
             # username = form.cleaned_data['username']
             # email = form.cleaned_data['email']
@@ -33,12 +34,13 @@ def signup_view(request):
 def login_view(request):
     # GET, POST 분리
     if request.method == 'GET':
+        
         # 로그인 HTML 응답
-        pass
+        return render(request, 'accounts/login.html', {'form' : AuthenticationForm()})
     
     else:
         # 데이터 유효성 검사
-        form = AuthenticationForm(request.POST)
+        form = AuthenticationForm(request, request.POST)
         
         if form.is_valid():
             # 비즈니스 로직 처리 - 로그인 처리
@@ -48,11 +50,8 @@ def login_view(request):
         
         else:
             # 비즈니스 로직 처리 - 로그인 실패
-            form = AuthenticationForm(request.POST)
             # 응답
             return redirect(request, 'accounts/login.html', {'form': form})
-        
-        
         
         
         # 데이터 유효성 검사
@@ -64,3 +63,8 @@ def login_view(request):
         # if user == None:
         #     pass
         # password = request.POST.get('password')
+        
+        # 순서 꼭 기억하기
+        # 데이터 유효성 검사 => 비즈니스 로직 처리 => 응답
+        
+        

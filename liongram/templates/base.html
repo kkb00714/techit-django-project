@@ -49,5 +49,11 @@
         </nav>
     </div>
 
+    {% if request.user.is_authenticated %}
+    <span>로그인 상태 : {{ request.user.username }}</span>
+    {% else %}
+        <span>비로그인 상태</span>
+    {% endif %}
+
 </body>
 </html>
