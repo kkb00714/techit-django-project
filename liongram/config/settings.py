@@ -38,13 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'posts',
-    # 'support',
+    'support',
     'users',
     'accounts',
     'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    # View에서 요청을 받기 전과 응답을 한 이후에 호출이 되는 것들을
+    # MiddleWare 라고 부름.
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
