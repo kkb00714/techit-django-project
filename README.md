@@ -392,11 +392,32 @@
 
         - #SomewhereInTheDocument : Anchor (html 특정 위치로 이동하기로 위한 기능을 수행)
 
-    ※
+
+------------
+
+# Django REST Framework (DRF) 란? 
+
+    ※Django REST Framework
+        => DRF는 장고를 기반으로 웹 API를 구축할 수 있도록 기능 등을 만들어 놓은 툴킷으로, RESTful한 API 형태의 기능을 제공함
+
+    ※ DRF의 장점
+        - API, 개발을 쉽게 만들어 줌
+        - 인증 정책 OAuth1, OAuth2 사용 가능
+        - (중요!!) Serializer(직렬화) 기능을 제공 (Model > JSON, JSON > Model)
+            : 모델이 JSON으로, JSON이 모델로 바뀜
+        - 문서화, 커뮤니티 지원
+
+    ※ DRF의 역할 : 클라이언트에게 받은 요청을 처리하고 응답해줌
+
+    ※ DRF의 핵심 요소
+        - 요청 및 응답, View와 ViewSet, 라우터, 직렬화, 인증 및 권한, 페이징 및 필터
+
 
 ------------
 
 #
+
+    ※
 
 
 
