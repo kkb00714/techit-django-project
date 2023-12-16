@@ -415,7 +415,9 @@
 
 ------------
 
-#
+# DRF 학습 전 꼭 알아야 하는 핵심 개념
+
+참고할 공식 문서 : https://www.django-rest-framework.org/
 
     ※
 
