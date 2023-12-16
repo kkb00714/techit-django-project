@@ -318,5 +318,85 @@
 
     ※ DRF (Django REST Framework) : DRF는 장고를 기반으로 웹 API 를 구축할 수 있도록 기능을 만들어 놓은 툴킷
 
-    ※ 
+    
+------------
+
+# RESTful한 API란?
+
+    ※ API는 어떤 기준으로 개발해야 하는가?
+        => 개발자 간의 협력과 유지보수 및 확장에 용이한 개발을 위해
+
+    ※ REST API (Representational State Transfer) 
+        - HTTP 통신에서 어떤 자원에 대한 CRUD 요청을 Resource(자원)와 Method(행위)로 표현하여 특정한 형태로 전달하는 방식
+        - REST 설계 규칙을 잘 지켜서 설계된 API를 'RESTful' 하다고 표현
+
+    ※REST API의 특징
+        - 균일한 인터페이스 : 구조를 단순화하고 상호 작용의 가시성을 향상 시킴
+        - 무상태 : 클라이언트에서 서버로의 각 요청에 요청을 이해하고 완료하는데 필요한 모든 정보가 포함되어야 함
+        - 캐시 처리 가능 : 클라이언트는 응답을 캐싱할 수 있어야 함 
+        - 계층화 : 서버는 다중 계층으로 구성될 수 있으며 보안, 로드 밸런싱, 암호화 등을 위한 계층을 추가하여 구조를 변경할 수 있음
+        (단, Proxy, Gateway와 같은 네트워크 기반의 중간매체를 사용할 수 있게 해주며 클라이언트는 서버와 직접 토잇ㄴ하는지, 중간 서버와 통신하는지 알 수 없음)
+        - 클라이언트/서버 구조 : 구조를 단순화시키고 작은 단위로 분리함으로써 클라이언트-서버의 각 파트가 독립적으로 구분하고 서로 간의 의존성을 줄임
+
+    ※ REST API 설계 규칙
+        1. URI는 명사를 사용
+        2. 슬래시(/)로 계측 관계를 표현
+        3. 밑줄(_)을 사용하지 않고, 하이픈(-)을 사용
+        4. URI 는 소문자로만 구성
+        5. HTTP 응답 상태 코드 사용
+        6. 파일 확장자는 URI에 포함하지 않음
+
+    ※ HTTP Method 역할
+        - POST : POST를 통해 해당 URI를 요청하면 리소스 생성 (Create에 해당)
+            ex) {Resource}/
+                posts/
+
+        - GET : GET을 통해 해당 리소스 조회 (Read에 해당)
+            ex) {Resource}/
+                posts/
+                
+                {Resource}/{identity}/
+                posts/3/
+
+        - PUT : 해당 리소스를 수정 (Update에 해당)
+            ex) {Resource}/{identity}/
+                posts/5/
+
+        - PATCH : 해당 리소스를 부분 수정 (Update에 해당)
+            ex) {Resource}/{identity}/
+                posts/5/
+
+        - DELETE : 해당 리소스를 삭제 (Delete에 해당)
+            ex) {Resource}/{identity}/
+                posts/3/
+
+    ※ URI(Uniform Resource Identifier) & URL(Uniform Resource Locator)
+        => URI : 특정 리소스를 식별하는 통합 자원 식별자를 의미 (인터넷에 있는 자원을 나타내는 유일한 주소)
+            ex) https://127.0.0.1.:8000 , http://127.0.0.1:8000/posts/3/ 등
+
+        => URL : 흔히 웹 주소라고 하며, 컴퓨터 네트워크 상에서 리소스가 어디 있는지 알려주기 위한 규약
+            ex) http://127.0.0.1:8000/static/image/ 등 (정적 파일 안에 있는 파일을 불러오는 것이기 때문에 url이 맞음)
+
+    ※ URI 명칭
+        ex) http://www.example.com:80/path/to/myfile.html?key1=value1&key2=value2#SomewhereInTheDocument
+
+        - http : Protocol (프로토콜)
+
+        - www.example.com : Domain Name (도메인 이름)
+
+        - :80 : Port (포트 번호)
+
+        - /path/to/myfile.html : Path to the file
+
+        - ?key1=value1&key2=value2 : Parameters (파라미터, 혹은 쿼리스트링이라고 부름)
+
+        - #SomewhereInTheDocument : Anchor (html 특정 위치로 이동하기로 위한 기능을 수행)
+
+    ※
+
+------------
+
+#
+
+
 
