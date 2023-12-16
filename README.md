@@ -419,7 +419,7 @@
 
 참고할 공식 문서 : https://www.django-rest-framework.org/
 
-    ※
+
 
 
 
