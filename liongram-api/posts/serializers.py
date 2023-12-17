@@ -19,9 +19,13 @@ class PostListModelSerializer(PostBaseModelSerializer):
             'view_count', 
             'writer',
             ]
-        
-
+        depth = 1
         # exclude = ['content', ]
+
+class PostRetrieveModelSerializer(PostBaseModelSerializer):
+    class Meta(PostBaseModelSerializer.Meta):
+        depth = 1
+        
 
 class PostCreateModelSerializer(PostBaseModelSerializer):
     class Meta(PostBaseModelSerializer.Meta):

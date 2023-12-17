@@ -4,10 +4,34 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 
+from rest_framework import generics
+
 from .models import Post, Comment
 from .serializers import (PostListModelSerializer, 
                         PostCreateModelSerializer, 
-                        CommentHyperlinkedModelSerializer)
+                        CommentHyperlinkedModelSerializer,
+                        PostRetrieveModelSerializer)
+
+# 게시글 목록 + 생성
+class PostListView(generics.ListAPIView, generics.CreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostListModelSerializer
+    
+    
+# 게시글 상세
+class PostRetrieveView(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostRetrieveModelSerializer
+
+# 게시글 작성
+
+# 게시글 수정 1
+
+# 게시글 수정 2
+
+# 게시글 삭제 
+
+
 
 class PostModelViewSet(ModelViewSet):
     queryset = Post.objects.all()
