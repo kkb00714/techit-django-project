@@ -1,4 +1,7 @@
 from django.shortcuts import render
+
+from rest_framework import status
+
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -13,24 +16,29 @@ from .serializers import (PostListModelSerializer,
                         PostRetrieveModelSerializer)
 
 # 게시글 목록 + 생성
-class PostListView(generics.ListAPIView, generics.CreateAPIView):
+class PostListCreateView(generics.ListAPIView, generics.CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostListModelSerializer
     
+    # Overriding 
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
     
-# 게시글 상세
-class PostRetrieveView(generics.RetrieveAPIView):
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance = serializer.save(writer = request.user)
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+    
+
+# 게시글 상세, 수정, 삭제
+class PostRetrieveUpdateView(generics.RetrieveAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostRetrieveModelSerializer
-
-# 게시글 작성
-
-# 게시글 수정 1
-
-# 게시글 수정 2
-
-# 게시글 삭제 
-
 
 
 class PostModelViewSet(ModelViewSet):
