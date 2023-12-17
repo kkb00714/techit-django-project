@@ -4,6 +4,7 @@ from django.urls import path, include
 from rest_framework import routers
 from posts.views import PostModelViewSet, calculator, CalculatorAPIView
 
+# router의 핵심 => view를 기준으로 urlpattern 등을 작성해줌
 router = routers.DefaultRouter()
 router.register('posts', PostModelViewSet)
 

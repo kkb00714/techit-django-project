@@ -417,7 +417,14 @@
 
 # DRF 학습 전 꼭 알아야 하는 핵심 개념
 
-참고할 공식 문서 : https://www.django-rest-framework.org/
+    ※ 참고할 공식 문서 : https://www.django-rest-framework.org/
+
+    ※ DRF 실행 흐름 (장고 실행 흐름과 유사함) - 사진 참조
+        : Routers => Serializer => Generic Views => ViewSets
+
+        - Router : urls.py 
+        - View : @api_view(), GenericAPIView, ViewSets 등등
+        - api는 텍스트 기반 응답을 해주므로 Template을 사용하지 않음 
 
 
 
