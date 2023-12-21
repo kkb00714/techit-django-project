@@ -6,7 +6,6 @@ from rest_framework.decorators import api_view, action
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-
 from rest_framework import generics
 
 from .models import Post, Comment
@@ -16,6 +15,8 @@ from .serializers import (PostListModelSerializer,
                         PostRetrieveModelSerializer,
                         CommentListModelSerializer,
                         )
+
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 
 # 게시글 목록 + 생성
 # ListAPIView, CreateAPIView => pk 값이 안 들어감
@@ -47,6 +48,20 @@ class PostRetrieveUpdateView(generics.RetrieveAPIView, generics.UpdateAPIView, g
 class PostModelViewSet(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostListModelSerializer
+    
+    def get_permissions(self):
+        permission_classes = list()
+        action = self.action
+
+        if action == 'list':
+            permission_classes = [AllowAny]
+        elif action in ['create', 'retrieve']:
+            permission_classes = [IsAuthenticated]
+        elif action in ['update', 'partial_update', 'destroy']:
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
+
+    
     
     @action(detail=True, methods=['get'])
     def get_comment_all(self, request, pk=None):
