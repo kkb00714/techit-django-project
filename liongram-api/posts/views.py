@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from rest_framework import status
 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
@@ -13,9 +13,12 @@ from .models import Post, Comment
 from .serializers import (PostListModelSerializer, 
                         PostCreateModelSerializer, 
                         CommentHyperlinkedModelSerializer,
-                        PostRetrieveModelSerializer)
+                        PostRetrieveModelSerializer,
+                        CommentListModelSerializer,
+                        )
 
 # 게시글 목록 + 생성
+# ListAPIView, CreateAPIView => pk 값이 안 들어감
 class PostListCreateView(generics.ListAPIView, generics.CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostListModelSerializer
@@ -33,17 +36,24 @@ class PostListCreateView(generics.ListAPIView, generics.CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
-    
-
 # 게시글 상세, 수정, 삭제
+# RetrieveAPIView, UpdateAPIView, DestroyAPIView => pk 값이 들어감
 class PostRetrieveUpdateView(generics.RetrieveAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostRetrieveModelSerializer
 
 
+# 
 class PostModelViewSet(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostListModelSerializer
+    
+    @action(detail=True, methods=['get'])
+    def get_comment_all(self, request, pk=None):
+        post = self.get_object()
+        comment_all = post.comment_set.all()
+        serializer = CommentListModelSerializer(comment_all, many=True)
+        return Response(serializer.data)
     
 # class CommentModelViewSet(ModelViewSet):
 #     queryset = Comment.objects.all()

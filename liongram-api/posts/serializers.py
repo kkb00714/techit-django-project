@@ -43,3 +43,7 @@ class CommentHyperlinkedModelSerializer(HyperlinkedModelSerializer):
         model = Comment
         fields = '__all__'
 
+class CommentListModelSerializer(ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'

@@ -6,7 +6,7 @@ from .models import Post, Comment
 class PostModelAdmin(admin.ModelAdmin):
     pass
 
-# @admin.register(Comment)
-# class CommentModelAdmin(admin.ModelAdmin):
-#     pass
+@admin.register(Comment)
+class CommentModelAdmin(admin.ModelAdmin):
+    pass
 
